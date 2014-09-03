@@ -11,7 +11,6 @@ var configuration = {
 
     ],
 
-    view : {
-        basePath : '/WEB-INF/view'
-    }
+    'view.basePath' : '/WEB-INF/view'
+    
 };
