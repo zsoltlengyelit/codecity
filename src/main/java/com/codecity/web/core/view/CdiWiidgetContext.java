@@ -18,13 +18,16 @@ public class CdiWiidgetContext extends DefaultWiidgetContext {
     @Override
     public Object get(final String variable) {
 
-        final Object object = super.get(variable);
+        if (super.isSet(variable)) {
+            return super.get(variable);
 
-        if (object == null) {
-            return getBeanByName(variable);
         }
 
-        return object;
+        try {
+            return getBeanByName(variable);
+        } finally {
+            return null;
+        }
     }
 
     public Object getBeanByName(final String name) // eg. name=availableCountryDao

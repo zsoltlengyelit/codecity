@@ -1,5 +1,7 @@
 package com.codecity.web.core;
 
+import io.pallas.core.execution.Request;
+
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
@@ -19,11 +21,17 @@ public class BaseController {
     @Inject
     private ServletContext context;
 
-    protected String render(final String view, final DataMap data) {
+    @Inject
+    private Request request;
+
+    private final DataMap model = new DataMap();
+
+    protected String render(final String view) {
 
         //        cdiWiidgetFactory.getWiidgetContext()// clear
-        cdiWiidgetFactory.getWiidgetContext().setAll(data);
+        cdiWiidgetFactory.getWiidgetContext().setAll(model());
 
+        // TODO put to config
         final String realPath = context.getRealPath("/WEB-INF/view/" + view + ".wdgt");
 
         try {
@@ -35,9 +43,12 @@ public class BaseController {
 
     }
 
-    protected String render(final String view) {
+    protected Request request() {
+        return request;
+    }
 
-        return render(view, new DataMap());
+    protected DataMap model() {
+        return model;
     }
 
 }
