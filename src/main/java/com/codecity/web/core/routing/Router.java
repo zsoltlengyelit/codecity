@@ -8,9 +8,6 @@ import javax.servlet.ServletContext;
 import org.ocpsoft.rewrite.annotation.RewriteConfiguration;
 import org.ocpsoft.rewrite.config.Configuration;
 import org.ocpsoft.rewrite.config.ConfigurationBuilder;
-import org.ocpsoft.rewrite.config.Direction;
-import org.ocpsoft.rewrite.servlet.config.Path;
-import org.ocpsoft.rewrite.servlet.config.Redirect;
 import org.ocpsoft.rewrite.servlet.config.rule.Join;
 
 @Specializes
@@ -21,7 +18,7 @@ public class Router extends RoutingProvider {
     @Override
     public Configuration getConfiguration(final ServletContext context) {
 
-        final String contextPath = context.getContextPath();
+        //        final String contextPath = context.getContextPath();
 
         // TODO
         // final List<?> routes = appConfig.getValue("routes");
@@ -32,9 +29,10 @@ public class Router extends RoutingProvider {
         configuration.addRule(Join.path("/signin").to("/index/login?user=Anonymus"));
         configuration.addRule(Join.path("/signin/{user}").to("/index/login?user={user}"));
 
-        configuration.addRule().when(Direction.isInbound().and(Path.matches("/{any}"))).perform(Redirect.temporary(contextPath + "/home?page={any}"));
+        configuration.addRule(Join.path("/assets/{file}").to("/asset/serve?file={file}")).where("file").matches(".*");
+
+        //configuration.addRule().when(Direction.isInbound().and(Path.matches("/{any}"))).perform(Redirect.temporary(contextPath + "/home?page={any}"));
 
         return configuration;
     }
-
 }

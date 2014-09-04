@@ -1,28 +1,34 @@
 package com.codecity.web.controller;
 
 import io.pallas.core.annotations.Controller;
+import io.pallas.core.asset.AssetManager;
 import io.pallas.core.controller.BaseController;
-import io.pallas.core.view.Model;
 import io.pallas.core.view.View;
 
+import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
+import javax.ws.rs.QueryParam;
 
 @Controller
 public class IndexController extends BaseController {
 
+    @Inject
+    private AssetManager assetManager;
+
     public View index() {
-        return view();
+
+        final String jqueryUrl = assetManager.publishRelativeContextFile("/WEB-INF/classes/com/codecity/assets/jquery.js");
+
+        return view().set("jqueryUrl", jqueryUrl);
     }
 
-    public View login() {
+    public View login(@QueryParam("user") final String userName) {
 
         final HttpServletRequest request = request();
 
         request.getRequestURI();
 
-        final Model model = model().set("user", request.getParameter("user"));
-
-        return view(model);
+        return view().set("user", userName);
     }
 
 }

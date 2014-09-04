@@ -1,13 +1,20 @@
 import index.parts.menu;
 
+"<!DOCTYPE html>";
 "html"{
+	
+	"head"{
+		
+		"script"(src = jqueryUrl, type="text/javascript");
+	}
+	
 	"body"{
 	
 		"div"{		
 			menu;
 		}
 	
-		"h1"("Hello wiidget");
+		"h1"("Gremon");
 	
 	
 	}
