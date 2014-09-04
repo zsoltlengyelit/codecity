@@ -3,18 +3,18 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.codecity</groupId>
 	<artifactId>web</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.1.0</version>
 	<packaging>war</packaging>
 
 	<dependencies>
 
 		<dependency>
 			<groupId>io.pallas</groupId>
-			<artifactId>pallas-core</artifactId>
+			<artifactId>pallas</artifactId>
 			<version>0.1.0</version>
 		</dependency>
 
-		
+
 
 		<dependency>
 			<groupId>org.jboss.weld.servlet</groupId>

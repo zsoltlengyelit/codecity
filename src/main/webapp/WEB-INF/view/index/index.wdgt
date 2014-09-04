@@ -1,25 +1,15 @@
-import index.parts.menu;
-import io.pallas.core.view.wiidget.AbstractAsset as asset;
+import com.landasource.wiidget.library.template.Template;
+import com.landasource.wiidget.library.template.Part;
+import com.landasource.wiidget.library.template.SimplePart;
 
-"<!DOCTYPE html>";
-"html"{
+Template("layout/index.html"){
+
+	SimplePart(name = "contextPath", value = contextPath);
+
+	Part("body"){
 	
-	"head"{
-		
-		"script"(src="https://code.jquery.com/jquery-2.1.1.min.js", type="application/javascript");
-		asset(src = "/WEB-INF/classes/com/codecity/assets/jquery.js", type="application/javascript");
-	}
-	
-	"body"{
-	
-		"div"{		
-			menu;
-		}
-	
-		"h1"("Gremon");
-	
+		"hello";
 	
 	}
-
 
 }
