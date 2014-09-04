@@ -17,9 +17,7 @@ public class IndexController extends BaseController {
 
     public View index() {
 
-        final String jqueryUrl = assetManager.publishRelativeContextFile("/WEB-INF/classes/com/codecity/assets/jquery.js");
-
-        return view().set("jqueryUrl", jqueryUrl);
+        return view();
     }
 
     public View login(@QueryParam("user") final String userName) {

@@ -1,3 +1,5 @@
 (function(){
-	alert('df');
+
+	$('body').append('<div>Script is loaded from asset</div>');
+	
 })();

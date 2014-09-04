@@ -1,11 +1,13 @@
 import index.parts.menu;
+import io.pallas.core.view.wiidget.AbstractAsset as asset;
 
 "<!DOCTYPE html>";
 "html"{
 	
 	"head"{
 		
-		"script"(src = jqueryUrl, type="text/javascript");
+		"script"(src="https://code.jquery.com/jquery-2.1.1.min.js", type="application/javascript");
+		asset(src = "/WEB-INF/classes/com/codecity/assets/jquery.js", type="application/javascript");
 	}
 	
 	"body"{
