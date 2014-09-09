@@ -2,14 +2,16 @@ import com.landasource.wiidget.library.template.Template;
 import com.landasource.wiidget.library.template.Part;
 import com.landasource.wiidget.library.template.SimplePart;
 
-Template("layout/index.html"){
+//Template("layout/index.html"){
 
 	SimplePart(name = "contextPath", value = contextPath);
 
-	Part("body"){
+	//Part("body"){
 	
 		"hello";
+		
+		"a"(href= contextPath + "/auth/login"){"Login";};
 	
-	}
+	//}
 
-}
+//}
