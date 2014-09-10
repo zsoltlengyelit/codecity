@@ -13,6 +13,7 @@ public class Router extends io.pallas.core.routing.Router {
     @Override
     public void setRules(final ConfigurationBuilder builder, final ServletContext context) {
 
+        //builder.addRule(Join.path("/{action}").to("/index/{action}"));
         builder.addRule(Join.path("/home").to("/index/index"));
         builder.addRule(Join.path("/signin").to("/index/login?user=Anonymus"));
         builder.addRule(Join.path("/signin/{user}").to("/index/login?user={user}"));
