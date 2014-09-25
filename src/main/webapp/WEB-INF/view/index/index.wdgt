@@ -1,17 +1,50 @@
 import com.landasource.wiidget.library.template.Template;
 import com.landasource.wiidget.library.template.Part;
 import com.landasource.wiidget.library.template.SimplePart;
+import com.codecity.web.controller.IndexController;
+import com.landasource.wiidget.commons.util.Map as map;
+import io.pallas.core.view.wiidget.tool.Link;
 
-//Template("layout/index.html"){
+Template("layout/index.html"){
 
 	SimplePart(name = "contextPath", value = contextPath);
 
-	//Part("body"){
+	Part("body"){
 	
-		"hello";
+		"p"(application.name);
 		
-		"a"(href= contextPath + "/auth/login"){"Login";};
+		"p"{
+			"a"(href=link.of("/index/login?user=John")){"Login John";}
+		}
+		
+		"p"{			
+			"a"(href = link.of(IndexController, "login", {user : "Doe"})){
+				"Link";
+			}
+		}
+		
+		"p"{
+			
+			Link([IndexController, "api", {foo : "bar"}]){
+				"Tool link to api with param";
+			}
+			"-----";
+			Link([IndexController, "api"]){
+				"Tool link to api";
+			}
+			"-----";
+			Link([IndexController]){
+				"Tool index";
+			}
+			"-----";
+			Link(IndexController){
+				"Tool index";
+			}
+		
+		}
+		
+		"a"(href= contextPath + "/auth/login"){"Login";}
 	
-	//}
+	}
 
-//}
+}

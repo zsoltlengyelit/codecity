@@ -17,4 +17,10 @@ public class Application extends WebApplication {
 
     }
 
+    @Override
+    public String getName() {
+
+        return "codecity";
+    }
+
 }
