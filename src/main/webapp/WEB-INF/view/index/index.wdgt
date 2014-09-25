@@ -24,7 +24,9 @@ Template("layout/index.html"){
 		}
 		
 		"p"{
-			
+		
+			Link("/index/index"){"Home";}
+			"-------";
 			Link([IndexController, "api", {foo : "bar"}]){
 				"Tool link to api with param";
 			}
