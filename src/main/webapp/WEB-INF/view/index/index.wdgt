@@ -2,7 +2,6 @@ import com.landasource.wiidget.library.template.Template;
 import com.landasource.wiidget.library.template.Part;
 import com.landasource.wiidget.library.template.SimplePart;
 import com.codecity.web.controller.IndexController;
-import com.landasource.wiidget.commons.util.Map as map;
 import io.pallas.core.view.wiidget.tool.Link;
 
 Template("layout/index.html"){
