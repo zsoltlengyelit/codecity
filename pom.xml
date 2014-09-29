@@ -94,5 +94,29 @@
 		</resources>
 	</build>
 
+	<profiles>
+
+		<profile>
+			<id>run</id>
+			<build>
+				<defaultGoal>jetty:run-forked</defaultGoal>
+				<plugins>
+					<plugin>
+						<groupId>org.eclipse.jetty</groupId>
+						<artifactId>jetty-maven-plugin</artifactId>
+						<version>9.0.7.v20131107</version>
+						<configuration>
+							<stopPort>1353</stopPort>
+							<stopKey>quit</stopKey>
+							<port>8182</port>
+							<contextXml>src/main/webapp/WEB-INF/jetty-web.xml</contextXml>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+
+	</profiles>
+
 
 </project>
