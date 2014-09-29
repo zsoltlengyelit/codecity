@@ -4,7 +4,8 @@ import io.pallas.core.annotations.Controller;
 import io.pallas.core.asset.AssetManager;
 import io.pallas.core.asset.InlineAssetContent;
 import io.pallas.core.controller.BaseController;
-import io.pallas.core.view.View;
+import io.pallas.core.view.AbstractView;
+import io.pallas.core.view.wiidget.WiidgetPage;
 
 import java.io.InputStream;
 
@@ -12,29 +13,36 @@ import javax.inject.Inject;
 import javax.ws.rs.POST;
 import javax.ws.rs.QueryParam;
 
+import com.codecity.web.view.index.IndexPage;
+
 @Controller
 public class IndexController extends BaseController {
 
-    @Inject
-    private AssetManager assetManager;
+	@Inject
+	private AssetManager assetManager;
 
-    public View index() {
+	@Inject
+	private IndexPage indexPage;
 
-        final InputStream jsStream = getClass().getResourceAsStream("index.js");
-        final InlineAssetContent inlineContent = new InlineAssetContent(getClass().getName(), "index-inline.js", "application/javascript", jsStream);
-        final String indexJs = assetManager.publishRelativeContent(inlineContent);
+	public WiidgetPage index() {
 
-        return view().set("indexJs", indexJs);
-    }
+		final InputStream jsStream = getClass().getResourceAsStream("index.js");
+		final InlineAssetContent inlineContent = new InlineAssetContent(getClass().getName(), "index-inline.js", "application/javascript", jsStream);
+		final String indexJs = assetManager.publishRelativeContent(inlineContent);
 
-    public String api(@QueryParam("foo") final String foo) {
-        return "api: " + foo;
-    }
+		//return view().set("indexJs", indexJs);
 
-    @POST
-    public View login(@QueryParam("user") final String userName) {
+		return indexPage;
+	}
 
-        return view().set("user", userName);
-    }
+	public String api(@QueryParam("foo") final String foo) {
+		return "api: " + foo;
+	}
+
+	@POST
+	public AbstractView login(@QueryParam("user") final String userName) {
+
+		return view().set("user", userName);
+	}
 
 }
