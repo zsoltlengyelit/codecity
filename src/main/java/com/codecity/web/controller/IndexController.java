@@ -4,7 +4,6 @@ import io.pallas.core.annotations.Controller;
 import io.pallas.core.asset.AssetManager;
 import io.pallas.core.asset.InlineAssetContent;
 import io.pallas.core.controller.BaseController;
-import io.pallas.core.view.AbstractView;
 import io.pallas.core.view.View;
 
 import java.io.InputStream;
@@ -40,7 +39,7 @@ public class IndexController extends BaseController {
     }
 
     @POST
-    public AbstractView login(@QueryParam("user") final String userName) {
+    public View login(@QueryParam("user") final String userName) {
 
         return view().set("user", userName);
     }
