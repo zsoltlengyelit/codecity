@@ -8,14 +8,14 @@
 		</listener-class>
 	</listener>
 
-	<servlet>
-		<servlet-name>Pallas</servlet-name>
-		<servlet-class>io.pallas.core.servlet.PallasServlet</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>Pallas</servlet-name>
-		<url-pattern>/codecity/*</url-pattern>
-	</servlet-mapping>
+<!-- 	<servlet> -->
+<!-- 		<servlet-name>Pallas</servlet-name> -->
+<!-- 		<servlet-class>io.pallas.core.servlet.PallasServlet</servlet-class> -->
+<!-- 	</servlet> -->
+<!-- 	<servlet-mapping> -->
+<!-- 		<servlet-name>Pallas</servlet-name> -->
+<!-- 		<url-pattern>/*</url-pattern> -->
+<!-- 	</servlet-mapping> -->
 
 	<resource-env-ref>
 		<resource-env-ref-name>BeanManager</resource-env-ref-name>

@@ -5,7 +5,7 @@ import io.pallas.core.asset.AssetManager;
 import io.pallas.core.asset.InlineAssetContent;
 import io.pallas.core.controller.BaseController;
 import io.pallas.core.view.AbstractView;
-import io.pallas.core.view.wiidget.WiidgetPage;
+import io.pallas.core.view.View;
 
 import java.io.InputStream;
 
@@ -18,31 +18,31 @@ import com.codecity.web.view.index.IndexPage;
 @Controller
 public class IndexController extends BaseController {
 
-	@Inject
-	private AssetManager assetManager;
+    @Inject
+    private AssetManager assetManager;
 
-	@Inject
-	private IndexPage indexPage;
+    @Inject
+    private IndexPage indexPage;
 
-	public WiidgetPage index() {
+    public View index() {
 
-		final InputStream jsStream = getClass().getResourceAsStream("index.js");
-		final InlineAssetContent inlineContent = new InlineAssetContent(getClass().getName(), "index-inline.js", "application/javascript", jsStream);
-		final String indexJs = assetManager.publishRelativeContent(inlineContent);
+        final InputStream jsStream = getClass().getResourceAsStream("index.js");
+        final InlineAssetContent inlineContent = new InlineAssetContent(getClass().getName(), "index-inline.js", "application/javascript", jsStream);
+        final String indexJs = assetManager.publishRelativeContent(inlineContent);
 
-		//return view().set("indexJs", indexJs);
+        return view().set("indexJs", indexJs);
 
-		return indexPage;
-	}
+        //return indexPage;
+    }
 
-	public String api(@QueryParam("foo") final String foo) {
-		return "api: " + foo;
-	}
+    public String api(@QueryParam("foo") final String foo) {
+        return "api: " + foo;
+    }
 
-	@POST
-	public AbstractView login(@QueryParam("user") final String userName) {
+    @POST
+    public AbstractView login(@QueryParam("user") final String userName) {
 
-		return view().set("user", userName);
-	}
+        return view().set("user", userName);
+    }
 
 }
