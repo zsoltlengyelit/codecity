@@ -1,38 +1,13 @@
-import com.codecity.web.controller.IndexController;
+import com.codecity.web.modules.auth.controllers.IndexController;
 import io.pallas.core.view.wiidget.tool.Link;
 	
-"p"(application.name);
-
-"p"{
-	"a"(href=link.of("/index/login?user=John")){"Login John";}
-}
-
-"p"{			
-	"a"(href = link.of(IndexController, "login", {user : "Doe"})){
-		"Link";
-	}
-}
+"h1"(application.name);
 
 "p"{
 
-	Link("/index/index"){"Home";}
-	"-------";
-	Link([IndexController, "api", {foo : "bar"}]){
-		"Tool link to api with param";
-	}
-	"-----";
-	Link([IndexController, "api"]){
-		"Tool link to api";
-	}
-	"-----";
 	Link([IndexController]){
-		"Tool index";
+		"Login";
 	}
-	"-----";
-	Link(IndexController){
-		"Tool index";
-	}
+
 
 }
-
-"a"(href= contextPath + "/auth/login"){"Login";}
