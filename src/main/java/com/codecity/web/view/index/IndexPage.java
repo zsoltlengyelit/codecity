@@ -1,6 +1,5 @@
 package com.codecity.web.view.index;
 
-import io.pallas.core.controller.ControllerAction;
 import io.pallas.core.view.ViewFactory;
 import io.pallas.core.view.wiidget.WiidgetPage;
 
@@ -14,9 +13,6 @@ public class IndexPage extends WiidgetPage {
     @Inject
     private ViewFactory viewFactory;
 
-    @Inject
-    private ControllerAction action;
-
     private String title;
 
     public String getTitle() {
@@ -29,7 +25,7 @@ public class IndexPage extends WiidgetPage {
 
     @Override
     public void run() {
-        write("Index hello: " + action.getControllerClass().getType().getCanonicalName());
+        write("Index hello: ");
     }
 
 }
