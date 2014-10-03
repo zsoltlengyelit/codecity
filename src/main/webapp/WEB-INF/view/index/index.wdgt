@@ -1,11 +1,12 @@
-import com.codecity.web.modules.auth.controllers.IndexController;
+
+import com.codecity.web.modules.auth.controllers.LoginController;
 import io.pallas.core.view.wiidget.tool.Link;
 	
 "h1"(application.name);
 
 "p"{
 
-	Link([IndexController]){
+	Link([LoginController]){
 		"Login";
 	}
 

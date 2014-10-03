@@ -1,16 +1,25 @@
-import com.codecity.web.modules.auth.controllers.IndexController as LoginController;
+import com.codecity.web.modules.auth.controllers.LoginController;
 
 "div"( class="form-box", id="login-box"){
 	"div"(class="header"){"Sign In";}
 	
-	"form"(action=link.of(LoginController), method="post"){
+	
+	"form"(action=link.of(LoginController.type), method="post", autocomplete = "off"){
 	
 		"div"(class="body bg-gray"){
-			"div"(class="form-group"){
-				"input"(type="text", name="userid", class="form-control", placeholder="User ID");
+			"div"(class="form-group" + (form.error("username") != null ? " has-error" : "")){
+				// username input
+				"input"(value = form.username ,type="text", name="username", class="form-control", placeholder="User ID");
+				// username error
+				"div"(rendered = form.error("username") != null, class="bg-red"){
+					`form.error("username").message()`;
+				}
 			}
-			"div"( class="form-group"){
-				"input"(type="password", name="password", class="form-control", placeholder="Password");
+			"div"(class="form-group" + (form.error("password") != null ? " has-error" : "")){
+				"input"(value = form["password"], type="password", name="password", class="form-control", placeholder="Password");
+				"div"(rendered = form.error("password") != null, class="bg-red"){
+					`form.error("password").message()`;
+				}
 			}
 			"div"(class="form-group"){
 				"input"(type="checkbox", name="remember_me");

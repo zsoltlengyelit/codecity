@@ -17,8 +17,7 @@ public class Router extends io.pallas.core.routing.Router {
         builder.addRule(Join.path("/home").to("/index/index"));
         builder.addRule(Join.path("/home").to("/index"));
         builder.addRule(Join.path("/myapi/{param}").to("/index/api?foo={param}"));
-        builder.addRule(Join.path("/signin").to("/index/login?user=Anonymus"));
-        builder.addRule(Join.path("/signin/{user}").to("/index/login?user={user}"));
+        builder.addRule(Join.path("/signin").to("authentication/index"));
 
         super.setRules(builder, context);
 
