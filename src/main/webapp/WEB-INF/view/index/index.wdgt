@@ -2,9 +2,9 @@
 import com.codecity.web.modules.auth.controllers.LoginController;
 import io.pallas.core.view.wiidget.tool.Link;
 	
-"h1"(application.name);
+h1(application.name);
 
-"p"{
+p{
 
 	Link([LoginController]){
 		"Login";

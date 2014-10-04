@@ -16,7 +16,7 @@ public class LoginForm {
     @Size(min = 2, max = 10, message = "Pass req")
     private String password;
 
-    private boolean rememberMe;
+    private boolean rememberMe = true;
 
     /**
      * @return the username
