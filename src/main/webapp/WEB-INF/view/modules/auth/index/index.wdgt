@@ -3,8 +3,7 @@ import com.codecity.web.modules.auth.controllers.LoginController;
 div(class="form-box", id="login-box"){
 	div(class="header"){"Sign In";}
 	
-	
-	form(action=link.of(LoginController.type), method="post", autocomplete = "off"){
+	$form : form(action=link.of(LoginController.type), method="post", autocomplete = "off"){
 	
 		div(class="body bg-gray"){
 			div(class="form-group" + (form.error("username") != null ? " has-error" : "")){
@@ -23,7 +22,7 @@ div(class="form-box", id="login-box"){
 			}
 			div(class="form-group"){
 				"input"(type="checkbox", name="rememberMe");
-				"Remember me";
+				`"Remember me at FORM: " + $form.id`;
 			}
 		}
 		div(class="footer"){
