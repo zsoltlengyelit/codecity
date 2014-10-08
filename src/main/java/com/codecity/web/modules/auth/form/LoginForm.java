@@ -80,7 +80,7 @@ public class LoginForm {
 
 
 	public class Details{
-		@NotNull
+		@NotNull @Size(min = 1, max = 255, message = "Message req")
 		private String welcomeMessage;
 
 		public String getWelcomeMessage() {

@@ -34,14 +34,16 @@ public class LoginController extends BaseController {
 	public Result index() {
 
 		final Model viewModel = new Model();
-		Form<LoginForm> form = Form.from(new LoginForm());
+		Form<LoginForm> form = Form.from(LoginForm.class);
 
 		if (request.isPostMethod()) {
 			form = form.bindFromRequest();
 
-			String welcomeMessage = form.get().getDetails().getWelcomeMessage();
 
 			if (!form.hasErrors()) {
+
+				LoginForm loginForm = form.get();
+
 				return redirect(IndexController.class); // login is successful
 			}
 		}
