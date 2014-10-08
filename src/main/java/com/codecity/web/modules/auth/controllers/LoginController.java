@@ -17,33 +17,35 @@ import com.codecity.web.modules.auth.form.LoginForm;
 @Controller
 public class LoginController extends BaseController {
 
-    @Inject
-    private Template template;
+	@Inject
+	private Template template;
 
-    @Inject
-    private HttpRequest request;
+	@Inject
+	private HttpRequest request;
 
-    @PostConstruct
-    private void init() {
-        template.setPath("layout/login");
-    }
+	@PostConstruct
+	private void init() {
+		template.setPath("layout/login");
+	}
 
-    /**
-     * @return view
-     */
-    public Result index() {
+	/**
+	 * @return view
+	 */
+	public Result index() {
 
-        final Model viewModel = new Model();
-        Form<LoginForm> form = Form.form(LoginForm.class);
+		final Model viewModel = new Model();
+		Form<LoginForm> form = Form.from(new LoginForm());
 
-        if (request.isPostMethod()) {
-            form = form.bindFromRequest();
+		if (request.isPostMethod()) {
+			form = form.bindFromRequest();
 
-            if (!form.hasErrors()) {
-                return redirect(IndexController.class); // login is successful
-            }
-        }
+			String welcomeMessage = form.get().getDetails().getWelcomeMessage();
 
-        return view("modules/auth/index/index").set("form", form).set(viewModel);
-    }
+			if (!form.hasErrors()) {
+				return redirect(IndexController.class); // login is successful
+			}
+		}
+
+		return view("modules/auth/index/index").set("form", form).set(viewModel);
+	}
 }

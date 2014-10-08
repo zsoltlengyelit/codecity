@@ -23,6 +23,14 @@ div(class="form-box", id="login-box"){
 					`form.error("password").message()`;
 				}
 			}
+			
+			div(class="form-group" + (form.error("details.welcomeMessage") != null ? " has-error" : "")){
+				input(value = form["details.welcomeMessage"], type="text", name="details.welcomeMessage", class="form-control", placeholder="Message");
+				div(rendered = form.error("details.welcomeMessage") != null, class="bg-red"){
+					`form.error("details.welcomeMessage").message()`;
+				}
+			}
+			
 			div(class="form-group"){
 				"input"(type="checkbox", name="rememberMe");
 				`"Remember me at FORM: " + $form.attributes.action`;
