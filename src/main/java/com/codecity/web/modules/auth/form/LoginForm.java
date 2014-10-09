@@ -6,95 +6,101 @@ import javax.validation.constraints.Size;
 
 import org.apache.shiro.authc.UsernamePasswordToken;
 
+import com.google.common.base.Strings;
+
 /**
  * @author Zsolt Lengyel (zsolt.lengyel.it@gmail.com)
  */
 public class LoginForm {
 
-    @NotNull
-    @Size(min = 2, max = 10, message = "Username kötelező")
-    private String username;
+	@NotNull
+	@Size(min = 2, max = 10, message = "Username kötelező")
+	private String username;
 
-    @NotNull
-    @Size(min = 2, max = 10, message = "Pass req")
-    private String password;
+	@NotNull
+	@Size(min = 2, max = 10, message = "Pass req")
+	private String password;
 
-    @Valid
-    private Details details = new Details();
+	@Valid
+	private Details details = new Details();
 
-    private boolean rememberMe = true;
+	private boolean rememberMe = true;
 
-    /**
-     * @return the username
-     */
-    public String getUsername() {
-        return username;
-    }
+	/**
+	 * @return the username
+	 */
+	public String getUsername() {
+		return username;
+	}
 
-    /**
-     * @param username
-     *            the username to set
-     */
-    public void setUsername(final String username) {
-        this.username = username;
-    }
+	/**
+	 * @param username
+	 *            the username to set
+	 */
+	public void setUsername(final String username) {
+		this.username = username;
+	}
 
-    /**
-     * @return the password
-     */
-    public String getPassword() {
-        return password;
-    }
+	/**
+	 * @return the password
+	 */
+	public String getPassword() {
+		return password;
+	}
 
-    /**
-     * @param password
-     *            the password to set
-     */
-    public void setPassword(final String password) {
-        this.password = password;
-    }
+	/**
+	 * @param password
+	 *            the password to set
+	 */
+	public void setPassword(final String password) {
+		this.password = password;
+	}
 
-    /**
-     * @return the rememberMe
-     */
-    public boolean isRememberMe() {
-        return rememberMe;
-    }
+	public String getRevertUsername(){
+		return Strings.repeat(getUsername(), 2);
+	}
 
-    /**
-     * @param rememberMe
-     *            the rememberMe to set
-     */
-    public void setRememberMe(final boolean rememberMe) {
-        this.rememberMe = rememberMe;
-    }
+	/**
+	 * @return the rememberMe
+	 */
+	public boolean isRememberMe() {
+		return rememberMe;
+	}
 
-    public Details getDetails() {
-        return details;
-    }
+	/**
+	 * @param rememberMe
+	 *            the rememberMe to set
+	 */
+	public void setRememberMe(final boolean rememberMe) {
+		this.rememberMe = rememberMe;
+	}
 
-    public void setDetails(final Details details) {
-        this.details = details;
-    }
+	public Details getDetails() {
+		return details;
+	}
 
-    public class Details {
-        @NotNull
-        @Size(min = 1, max = 255, message = "Message req")
-        private String welcomeMessage;
+	public void setDetails(final Details details) {
+		this.details = details;
+	}
 
-        public String getWelcomeMessage() {
-            return welcomeMessage;
-        }
+	public class Details {
+		@NotNull
+		@Size(min = 1, max = 255, message = "Message req")
+		private String welcomeMessage;
 
-        public void setWelcomeMessage(final String welcomeMessage) {
-            this.welcomeMessage = welcomeMessage;
-        }
+		public String getWelcomeMessage() {
+			return welcomeMessage;
+		}
 
-    }
+		public void setWelcomeMessage(final String welcomeMessage) {
+			this.welcomeMessage = welcomeMessage;
+		}
 
-    public UsernamePasswordToken asToken() {
-        final UsernamePasswordToken token = new UsernamePasswordToken(username, password, rememberMe);
-        return token;
-    }
+	}
+
+	public UsernamePasswordToken asToken() {
+		final UsernamePasswordToken token = new UsernamePasswordToken(username, password, rememberMe);
+		return token;
+	}
 
 }

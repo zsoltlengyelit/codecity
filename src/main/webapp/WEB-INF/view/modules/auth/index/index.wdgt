@@ -32,8 +32,13 @@ div(class="form-box", id="login-box"){
 			}
 			
 			div(class="form-group"){
-				"input"(type="checkbox", name="rememberMe");
-				`"Remember me at FORM: " + $form.attributes.action`;
+				label{
+					"input"(type="checkbox", name="rememberMe");
+					"Remember me";
+				}
+				p{
+					`form.getClass().getSimplame()`;
+				}
 			}
 		}
 		div(class="footer"){

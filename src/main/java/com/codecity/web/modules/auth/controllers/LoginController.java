@@ -28,77 +28,76 @@ import com.codecity.web.modules.auth.form.LoginForm;
 @Controller
 public class LoginController extends BaseController {
 
-    @Inject
-    private Template template;
+	@Inject
+	private Template template;
 
-    @Inject
-    private HttpRequest request;
+	@Inject
+	private HttpRequest request;
 
-    @PostConstruct
-    private void init() {
-        template.setPath("layout/login");
-    }
+	@PostConstruct
+	private void init() {
+		template.setPath("layout/login");
+	}
 
-    /**
-     * @return view
-     */
-    public Result index() {
+	/**
+	 * @return view
+	 */
+	public Result index() {
 
-        final Model viewModel = new Model();
-        Form<LoginForm> form = Form.from(LoginForm.class);
+		final Model viewModel = new Model();
+		Form<LoginForm> form = Form.from(LoginForm.class);
 
-        if (request.isPostMethod()) {
-            form = form.bindFromRequest();
+		if (request.isPostMethod()) {
+			form = form.bindFromRequest();
 
-            if (!form.hasErrors()) {
+			if (!form.hasErrors()) {
 
-                final LoginForm loginForm = form.get();
-                final UsernamePasswordToken token = loginForm.asToken();
-                if (authentiacte(token)) {
+				final LoginForm loginForm = form.get();
+				final UsernamePasswordToken token = loginForm.asToken();
+				if (authentiacte(token)) {
 
-                    SecurityUtils.getSubject().getSession().getAttribute("flash");
-                    return redirect(IndexController.class); // login is successful
-                }
-            }
-        }
+					return redirect(IndexController.class); // login is successful
+				}
+			}
+		}
 
-        return view("modules/auth/index/index").set("form", form).set(viewModel);
-    }
+		return view("modules/auth/index/index").set("form", form).set(viewModel);
+	}
 
-    /**
-     * Tries authenticate with token.
-     *
-     * @param token
-     * @return
-     */
-    private boolean authentiacte(final UsernamePasswordToken token) {
+	/**
+	 * Tries authenticate with token.
+	 *
+	 * @param token
+	 * @return
+	 */
+	private boolean authentiacte(final UsernamePasswordToken token) {
 
-        //1.
-        final Factory<org.apache.shiro.mgt.SecurityManager> factory = new IniSecurityManagerFactory("classpath:shiro.ini");
+		//1.
+		final Factory<org.apache.shiro.mgt.SecurityManager> factory = new IniSecurityManagerFactory("classpath:shiro.ini");
 
-        //2.
-        final org.apache.shiro.mgt.SecurityManager securityManager = factory.getInstance();
+		//2.
+		final org.apache.shiro.mgt.SecurityManager securityManager = factory.getInstance();
 
-        //3.
-        SecurityUtils.setSecurityManager(securityManager);
+		//3.
+		SecurityUtils.setSecurityManager(securityManager);
 
-        final Subject currentUser = SecurityUtils.getSubject();
+		final Subject currentUser = SecurityUtils.getSubject();
 
-        try {
-            currentUser.login(token);
+		try {
+			currentUser.login(token);
 
-            return true;
-        } catch (final UnknownAccountException uae) {
-            System.out.println(uae);
-        } catch (final IncorrectCredentialsException ice) {
-            System.out.println(ice);
-        } catch (final LockedAccountException lae) {
-            System.out.println(lae);
-        } catch (final ExcessiveAttemptsException eae) {
-            System.out.println(eae);
-        } catch (final AuthenticationException ae) {
-            System.out.println(ae);
-        }
-        return false;
-    }
+			return true;
+		} catch (final UnknownAccountException uae) {
+			System.out.println(uae);
+		} catch (final IncorrectCredentialsException ice) {
+			System.out.println(ice);
+		} catch (final LockedAccountException lae) {
+			System.out.println(lae);
+		} catch (final ExcessiveAttemptsException eae) {
+			System.out.println(eae);
+		} catch (final AuthenticationException ae) {
+			System.out.println(ae);
+		}
+		return false;
+	}
 }
